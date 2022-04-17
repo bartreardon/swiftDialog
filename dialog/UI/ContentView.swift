@@ -19,8 +19,8 @@ struct ContentView: View {
     
     init (observedDialogContent : DialogUpdatableContent) {
         self.observedDialogContent = observedDialogContent
-        if cloptions.timerBar.present {
-            progressSteps = string2float(string: cloptions.timerBar.value)
+        if dialogargs.timerBar.present {
+            progressSteps = string2float(string: dialogargs.timerBar.value)
         }
     }
 //
@@ -30,14 +30,14 @@ struct ContentView: View {
     var body: some View {
                         
         ZStack {            
-            if cloptions.watermarkImage.present {
-                    watermarkView(imagePath: cloptions.watermarkImage.value, opacity: Double(cloptions.watermarkAlpha.value), position: cloptions.watermarkPosition.value, scale: cloptions.watermarkFill.value)
+            if dialogargs.watermarkImage.present {
+                    watermarkView(imagePath: dialogargs.watermarkImage.value, opacity: Double(dialogargs.watermarkAlpha.value), position: dialogargs.watermarkPosition.value, scale: dialogargs.watermarkFill.value)
             }
         
             // this stack controls the main view. Consists of a VStack containing all the content, and a HStack positioned at the bottom of the display area
             VStack {
-                if cloptions.bannerImage.present {
-                    BannerImageView(imagePath: cloptions.bannerImage.value)
+                if dialogargs.bannerImage.present {
+                    BannerImageView(imagePath: dialogargs.bannerImage.value)
                         .border(appvars.debugBorderColour, width: 2)
                 }
 
@@ -52,8 +52,8 @@ struct ContentView: View {
                         .frame(width: appvars.windowWidth*appvars.horozontalLineScale, height: 2)
                 }
                 
-                if cloptions.video.present {
-                    VideoView(videourl: cloptions.video.value, autoplay: cloptions.autoPlay.present, caption: cloptions.videoCaption.value)
+                if dialogargs.video.present {
+                    VideoView(videourl: dialogargs.video.value, autoplay: dialogargs.autoPlay.present, caption: dialogargs.videoCaption.value)
                 } else {
                     DialogView(observedDialogContent: observedDialogContent)
                 }
@@ -62,17 +62,17 @@ struct ContentView: View {
                 
                 // Buttons
                 HStack() {
-                    if cloptions.infoButtonOption.present || cloptions.buttonInfoTextOption.present {
+                    if dialogargs.infoButtonOption.present || dialogargs.buttonInfoTextOption.present {
                         MoreInfoButton()
-                        if !cloptions.timerBar.present {
+                        if !dialogargs.timerBar.present {
                             Spacer()
                         }
                     }
-                    if cloptions.timerBar.present {
-                        timerBarView(progressSteps: progressSteps, visible: !cloptions.hideTimerBar.present, observedDialogContent : observedDialogContent)
+                    if dialogargs.timerBar.present {
+                        timerBarView(progressSteps: progressSteps, visible: !dialogargs.hideTimerBar.present, observedDialogContent : observedDialogContent)
                             .frame(alignment: .bottom)
                     }
-                    if (cloptions.timerBar.present && cloptions.button1TextOption.present) || !cloptions.timerBar.present || cloptions.hideTimerBar.present  {
+                    if (dialogargs.timerBar.present && dialogargs.button1TextOption.present) || !dialogargs.timerBar.present || dialogargs.hideTimerBar.present  {
                         ButtonView(observedDialogContent: observedDialogContent) // contains both button 1 and button 2
                     }
                 }

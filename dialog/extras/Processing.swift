@@ -120,7 +120,7 @@ func shell(_ command: String) -> String {
 }
 
 func buttonAction(action: String, exitCode: Int32, executeShell: Bool, shouldQuit: Bool = true, observedObject: DialogUpdatableContent? = nil) {
-    //let action: String = CLOptionText(OptionName: cloptions.button1ActionOption, DefaultValue: "")
+    //let action: String = CLOptionText(OptionName: dialogargs.button1ActionOption, DefaultValue: "")
     
     if (action != "") {
         if executeShell {
@@ -187,7 +187,7 @@ func quitDialog(exitCode: Int32, exitMessage: String? = "", observedObject : Dia
         //build output array
         var outputArray : Array = [String]()
         
-        if cloptions.dropdownValues.present {
+        if dialogargs.dropdownValues.present {
             if dropdownItems.count == 1 {
                 outputArray.append("\"SelectedOption\" : \"\(dropdownItems[0].selectedValue)\"")
                 json["SelectedOption"].string = dropdownItems[0].selectedValue
@@ -201,7 +201,7 @@ func quitDialog(exitCode: Int32, exitMessage: String? = "", observedObject : Dia
             }
         }
         
-        if cloptions.textField.present {
+        if dialogargs.textField.present {
             // check to see if fields marked as required have content before allowing the app to exit
             // if there is an empty field, update the highlight colour
             var dontQuit = false
@@ -217,7 +217,7 @@ func quitDialog(exitCode: Int32, exitMessage: String? = "", observedObject : Dia
             }
             if dontQuit { return }
         }
-        if cloptions.checkbox.present {
+        if dialogargs.checkbox.present {
             for i in 0..<appvars.checkboxOptionsArray.count {
                 outputArray.append("\"\(appvars.checkboxOptionsArray[i])\" : \"\(appvars.checkboxValue[i])\"")
                 json[appvars.checkboxOptionsArray[i]].boolValue = appvars.checkboxValue[i]

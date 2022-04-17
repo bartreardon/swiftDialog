@@ -10,7 +10,7 @@ import SwiftUI
 
 struct IconOverlayView: View {
     
-    let overlayImagePath: String = cloptions.overlayIconOption.value // CLOptionText(OptionName: cloptions.overlayIconOption)
+    let overlayImagePath: String = dialogargs.overlayIconOption.value // CLOptionText(OptionName: dialogargs.overlayIconOption)
     var imgFromURL: Bool = false
     var imgFromAPP: Bool = false
     
@@ -110,7 +110,7 @@ struct IconOverlayView: View {
     }
     
     var body: some View {
-        if cloptions.overlayIconOption.present {
+        if dialogargs.overlayIconOption.present {
             ZStack {
                 if builtInIconPresent {
                     ZStack {

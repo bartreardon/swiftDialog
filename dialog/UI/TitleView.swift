@@ -12,7 +12,7 @@ struct TitleView: View {
     
     @ObservedObject var observedDialogContent : DialogUpdatableContent
     
-    var TitleViewOption: String = cloptions.titleOption.value// CLOptionText(OptionName: cloptions.titleOption, DefaultValue: appvars.titleDefault)
+    var TitleViewOption: String = dialogargs.titleOption.value// CLOptionText(OptionName: dialogargs.titleOption, DefaultValue: appvars.titleDefault)
     //var TitleViewOption: String
         
     var body: some View {

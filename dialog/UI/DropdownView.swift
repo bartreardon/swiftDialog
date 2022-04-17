@@ -15,12 +15,12 @@ struct DropdownView: View {
     @ObservedObject var observedDialogContent : DialogUpdatableContent
     @State var selectedOption : [String]
 
-    var showDropdown: Bool = cloptions.dropdownValues.present
+    var showDropdown: Bool = dialogargs.dropdownValues.present
     var fieldwidth: CGFloat = 0
     
     init(observedDialogContent : DialogUpdatableContent) {
         self.observedDialogContent = observedDialogContent
-        if !observedDialogContent.iconPresent { //} cloptions.hideIcon.present {
+        if !observedDialogContent.iconPresent { //} dialogargs.hideIcon.present {
             fieldwidth = appvars.windowWidth
         } else {
             fieldwidth = appvars.windowWidth - appvars.iconWidth

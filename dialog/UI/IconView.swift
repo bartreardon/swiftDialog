@@ -14,7 +14,7 @@ struct IconView: View {
     
     @ObservedObject var observedDialogContent : DialogUpdatableContent
     
-    var messageUserImagePath: String //= cloptions.iconOption.value // CLOptionText(OptionName: cloptions.iconOption, DefaultValue: "default")
+    var messageUserImagePath: String //= dialogargs.iconOption.value // CLOptionText(OptionName: dialogargs.iconOption, DefaultValue: "default")
     var logoWidth: CGFloat = appvars.iconWidth
     var logoHeight: CGFloat  = appvars.iconHeight
     var imgFromURL: Bool = false
@@ -50,13 +50,13 @@ struct IconView: View {
         logoWidth = appvars.iconWidth
         logoHeight = appvars.iconHeight
         
-        if cloptions.overlayIconOption.present {
+        if dialogargs.overlayIconOption.present {
             mainImageScale = mainImageWithOverlayScale
         }
         
         // fullscreen runs on a dark background so invert the default icon colour for info and default
         // also set the icon offset to 0
-        if cloptions.fullScreenWindow.present {
+        if dialogargs.fullScreenWindow.present {
             // fullscreen background is dark, so we want to use white as the default colour
             builtInIconColour = Color.white
         }
@@ -116,16 +116,16 @@ struct IconView: View {
             }
         }
         
-        if cloptions.warningIcon.present || messageUserImagePath == "warning" {
+        if dialogargs.warningIcon.present || messageUserImagePath == "warning" {
             builtInIconName = "exclamationmark.octagon.fill"
             builtInIconFill = "octagon.fill" //does not have multicolour sf symbol so we have to make out own using a fill layer
             builtInIconColour = Color.red
             iconRenderingMode = Image.TemplateRenderingMode.template //force monochrome
             builtInIconPresent = true
-        } else if cloptions.cautionIcon.present || messageUserImagePath == "caution" {
+        } else if dialogargs.cautionIcon.present || messageUserImagePath == "caution" {
             builtInIconName = "exclamationmark.triangle.fill"  // yay multicolour sf symbol
             builtInIconPresent = true
-        } else if cloptions.infoIcon.present || messageUserImagePath == "info" {
+        } else if dialogargs.infoIcon.present || messageUserImagePath == "info" {
             builtInIconName = "person.fill.questionmark"
             builtInIconPresent = true
         } else if messageUserImagePath == "default" || (!builtInIconPresent && !FileManager.default.fileExists(atPath: messageUserImagePath) && !imgFromURL) {

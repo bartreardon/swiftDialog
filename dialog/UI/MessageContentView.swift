@@ -34,12 +34,12 @@ struct MessageContent: View {
         : MarkdownStyle(font: .custom(appvars.messageFontName, size: appvars.titleFontSize), foregroundColor: appvars.messageFontColour)
     }
     
-    let messageContentOption: String = cloptions.messageOption.value
+    let messageContentOption: String = dialogargs.messageOption.value
     let theAllignment: Alignment = .topLeading
     
     init(observedDialogContent : DialogUpdatableContent) {
         self.observedDialogContent = observedDialogContent
-        if !observedDialogContent.iconPresent { //cloptions.hideIcon.present {
+        if !observedDialogContent.iconPresent { //dialogargs.hideIcon.present {
             fieldPadding = 40
             iconDisplayWidth = 0
         } else {
@@ -59,7 +59,7 @@ struct MessageContent: View {
                         .padding(.bottom, 10)
                         .border(appvars.debugBorderColour, width: 2)
                 }
-                ImageView(imageArray: appvars.imageArray, captionArray: appvars.imageCaptionArray, autoPlaySeconds: string2float(string: cloptions.autoPlay.value))
+                ImageView(imageArray: appvars.imageArray, captionArray: appvars.imageCaptionArray, autoPlaySeconds: string2float(string: dialogargs.autoPlay.value))
             }
         } else {
             VStack {

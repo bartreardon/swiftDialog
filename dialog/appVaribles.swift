@@ -14,7 +14,7 @@ var iconVisible: Bool = true
 
 // declare our app var in case we want to update values - e.g. future use, multiple dialog sizes
 var appvars = AppVariables()
-var cloptions = CLOptions()
+var dialogargs = DialogArgs()
 var textFields = [TextFieldState]()
 var dropdownItems = [DropDownItems]()
 
@@ -151,7 +151,7 @@ struct AppVariables {
     var debugBorderColour               = Color.clear
 }
 
-struct CLOptions {
+struct DialogArgs {
     // command line options that take string parameters
     var titleOption              = (long: String("title"),             short: String("t"),   value : String(""), present : Bool(false))  // -t
     var messageOption            = (long: String("message"),           short: String("m"),   value : String(""), present : Bool(false))  // -m

@@ -26,11 +26,11 @@ struct ButtonView: View {
     init(observedDialogContent : DialogUpdatableContent) {
         self.observedDialogContent = observedDialogContent
         
-        if cloptions.button1ShellActionOption.present {
-            button1action = cloptions.button1ShellActionOption.value
+        if dialogargs.button1ShellActionOption.present {
+            button1action = dialogargs.button1ShellActionOption.value
             buttonShellAction = true
-        } else if cloptions.button1ActionOption.present {
-            button1action = cloptions.button1ActionOption.value
+        } else if dialogargs.button1ActionOption.present {
+            button1action = dialogargs.button1ActionOption.value
         }
     }
     
@@ -38,7 +38,7 @@ struct ButtonView: View {
         //secondary button
         Spacer()
         HStack {
-            if cloptions.button2Option.present {
+            if dialogargs.button2Option.present {
                 Button(action: {
                     observedDialogContent.end()
                     quitDialog(exitCode: appvars.exit2.code)
@@ -48,7 +48,7 @@ struct ButtonView: View {
                     }
                 )
                 .keyboardShortcut(.cancelAction)
-            } else if cloptions.button2TextOption.present {
+            } else if dialogargs.button2TextOption.present {
                 let button2Text: String = observedDialogContent.button2Value
                 Button(action: {
                     observedDialogContent.end()
@@ -76,7 +76,7 @@ struct ButtonView: View {
         .keyboardShortcut(.defaultAction)
         .disabled(observedDialogContent.button1Disabled)
         .onReceive(timer) { _ in
-            if cloptions.timerBar.present && !cloptions.hideTimerBar.present {
+            if dialogargs.timerBar.present && !dialogargs.hideTimerBar.present {
                 observedDialogContent.button1Disabled = false
             }
             //button1disabled = false
@@ -86,12 +86,12 @@ struct ButtonView: View {
 }
 
 struct MoreInfoButton: View {
-    let buttonInfoAction: String = cloptions.buttonInfoActionOption.value
-    var buttonInfoText : String = cloptions.buttonInfoTextOption.value
+    let buttonInfoAction: String = dialogargs.buttonInfoActionOption.value
+    var buttonInfoText : String = dialogargs.buttonInfoTextOption.value
        
     var body: some View {
         HStack() {
-            Button(action: {buttonAction(action: buttonInfoAction, exitCode: 3, executeShell: false, shouldQuit: cloptions.quitOnInfo.present)}, label: {
+            Button(action: {buttonAction(action: buttonInfoAction, exitCode: 3, executeShell: false, shouldQuit: dialogargs.quitOnInfo.present)}, label: {
                 Text(buttonInfoText)
                     .frame(minWidth: 40, alignment: .center)
                 }

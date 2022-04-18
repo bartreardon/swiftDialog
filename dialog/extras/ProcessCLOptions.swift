@@ -55,11 +55,11 @@ func getJSON() -> JSON {
     return json
 }
 
-func processCLOptions() {
+func processCLOptions(json : JSON = getJSON()) {
     
     //this method goes through the arguments that are present and performs any processing required before use
     
-    let json : JSON = getJSON()
+    //let json : JSON = getJSON()
     
     if dialogargs.dropdownValues.present {
         // checking for the pre 1.10 way of defining a select list

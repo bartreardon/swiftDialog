@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftUI
+import SwiftyJSON
 
 enum StatusState {
     case start
@@ -366,6 +367,26 @@ class DialogUpdatableContent : ObservableObject {
                     }
                     
                 }
+                
+            // JSON
+            case "json:" :
+                let jsonCommand = line.replacingOccurrences(of: "json: ", with: "")
+                let jsonCommandType = jsonCommand.components(separatedBy: " ").first!.lowercased()
+                let jsonCommandString = jsonCommand.components(separatedBy: " ").last!
+                            
+                switch jsonCommandType {
+                case "file:" :
+                    print("accepting json from file \(jsonCommandString)")
+                    let json = processJSON(jsonFilePath: jsonCommandString)
+                    processCLOptions(json: json)
+                    print(json)
+                    
+                case "string:" :
+                    print("acccepting json from string \(jsonCommandString)")
+                default:
+                    break
+                }
+                
                 
             // quit
             case "quit:" :
